@@ -108,7 +108,7 @@ body {
 
 /* Player Card */
 
-.player-card-container {
+#player-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
