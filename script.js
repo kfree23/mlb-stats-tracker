@@ -47,12 +47,17 @@ function createPlayer({ name, team, position }) {
     const positionElement = document.createElement('p');
     positionElement.textContent = position;
 
-    infoContainer.appendChild(playerName);
+    card.appendChild(playerName);
     infoContainer.appendChild(teamName);
     infoContainer.appendChild(positionElement);
 
+    const hr = document.createElement('hr');
+
     const statCount = document.createElement('div');
-    statCount.classList.add('stat-count', 'flex', 'stat-positioning')
+    statCount.classList.add('stat-count', 'flex');
+
+    const statPositioning = document.createElement('div');
+    statPositioning.classList.add('stat-positioning');
 
     const statNum = document.createElement('p');
     statNum.textContent = 0;
@@ -60,8 +65,14 @@ function createPlayer({ name, team, position }) {
     const statName = document.createElement('p');
     statName.textContent = "HR";
 
+    statPositioning.appendChild(statNum);
+    statPositioning.appendChild(statName);
+    statCount.appendChild(statPositioning);
+
     card.appendChild(infoContainer);
+    card.appendChild(hr);
     card.appendChild(statCount);
+    
 
     playerCards.appendChild(card);
 }
