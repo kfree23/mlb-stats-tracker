@@ -136,7 +136,7 @@ body {
 .player-card-container .stat-count,
 .leaderboard-container-style .stat-count
 {
-    margin-top: 10px;
+    margin: 10px 0;
     height: 50px;
     width: 50px;
     background-color: #808080;
@@ -144,6 +144,14 @@ body {
     border-radius: 5px;
 }
 
+.log-game-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Leaderboard */
 
 #leaderboard-container {
     display: flex;
