@@ -91,6 +91,6 @@ function renderPlayer() {
 };
 
 function savePlayers() {
-    localStorage.set('players', JSON.stringify(players));
+    localStorage.setItem('players', JSON.stringify(players));
 }
 
