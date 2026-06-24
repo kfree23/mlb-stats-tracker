@@ -35,14 +35,13 @@ function createPlayer({ name, team, position }) {
     positionInput.value = '';
 
     savePlayers();
-    renderPlayer();
+    renderPlayers();
 }
 
-function renderPlayer() {
+function renderPlayers() {
+    playerCards.innerHTML = '';
 
     players.forEach(player => {
-        playerCards.innerHTML = '';
-
         const card = document.createElement('div');
         card.classList.add('card-styles', 'p-3', 'player-grid');
         card.classList.add('card');
@@ -93,4 +92,18 @@ function renderPlayer() {
 function savePlayers() {
     localStorage.setItem('players', JSON.stringify(players));
 }
+
+function loadPlayers() {
+    const storedPlayers = localStorage.getItem('players');
+
+    if (storedPlayers) {
+        players = JSON.parse(storedPlayers);
+    }
+
+    renderPlayers();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadPlayers();
+});
 
