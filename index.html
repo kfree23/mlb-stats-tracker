@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Stats Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header flex p-2">
+            <h1>MLB Stats Tracker</h1>
+            <p id="players-tracked">0 players tracked</p>
+        </header>
+
+
+        <!-- Player Input -->
+        <div class="input-player flex p-2">
+            <input type="text" id="input-player" placeholder="Enter Player Name">
+            <input type="text" id="input-team" placeholder="Enter Player Team">
+            <input type="text" id="input-position" placeholder="Enter Player Position">
+            <button id="submit">Add Player</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs p-2">
+            <ul>
+                <li class="active" data-tab="player-cards"><button>Player Card</button></li>
+                <li data-tab="leaderboards"><button>Leaderboard</button> </li>
+                <li data-tab="log-game"><button>Log Game</button></li>
+            </ul>
+        </div>
+
+        <!-- Player Card -->
+        <!-- PLAYER CARDS CONTAINER -->
+        <div class="player-card-container p-5">
+            <div class="player-grid p-3" id="player-cards">
+                <div class="card-styles"> 
+                    <h3>Shohei Ohtani</h3>
+                    <div class="text-positioning flex"> 
+                        <p>LA Dodgers</p> 
+                        <p>DH</p> </div>
+                    <hr>
+                    <div class="stat-count flex">
+                        <div class="stat-positioning"> 
+                            <p>0</p> 
+                            <p>HR</p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <!-- <div class="leaderboard-container-style p-5">
+    <div class="leaderboard" id="leaderboard-container">
+
+        <div class="card-styles card p-3">
+            <h3>Player Name</h3>
+            <div class="text-positioning flex">
+                <p>Team</p>
+                <p>Position</p>
+            </div>
+            <div class="stat-count flex">
+                <div class="stat-positioning">
+                    <p>0</p>
+                    <p>HR</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-styles card p-3">
+            <h3>Player Name</h3>
+            <div class="text-positioning flex">
+                <p>Team</p>
+                <p>Position</p>
+            </div>
+            <div class="stat-count flex">
+                <div class="stat-positioning">
+                    <p>0</p>
+                    <p>HR</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-styles card p-3">
+            <h3>Player Name</h3>
+            <div class="text-positioning flex">
+                <p>Team</p>
+                <p>Position</p>
+            </div>
+            <div class="stat-count flex">
+                <div class="stat-positioning">
+                    <p>0</p>
+                    <p>HR</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+        <!-- Modal -->
+        <dialog class="log-game-container" id="log-game-modal">
+            <div class="log-game">
+                <div class="game-log-header">
+                    <label for="players">Select Player</label>
+
+                    <select name="players" id="players">
+                        <option value="Shohei Ohtani">Shohei Ohtani</option>
+                        <option value="Zack Wheeler">Zack Wheeler</option>
+                        <option value="Aaron Judge">Aaron Judge</option>
+                    </select>
+                </div>
+
+                <div class="game-log-stats hitter" id="hitter-stats">
+                    <label for="AB">AB</label>
+                    <input type="number">
+
+                    <label for="H">H</label>
+                    <input type="number">
+
+                    <label for="HR">HR</label>
+                    <input type="number">
+
+                    <label for="RBI">RBI</label>
+                    <input type="number">
+
+                    <label for="R">R</label>
+                    <input type="number">
+
+                    <label for="BB">BB</label>
+                    <input type="number">
+                </div>
+
+                <div class="game-log-stats pitcher" id="pitcher-stats">
+                    <label for="IP">IP</label>
+                    <input type="number">
+
+                    <label for="K">K</label>
+                    <input type="number">
+
+                    <label for="H">H</label>
+                    <input type="number">
+
+                    <label for="BB">BB</label>
+                    <input type="number">
+
+                    <label for="ER">ER</label>
+                    <input type="number">
+
+                    <label for="ERA">ERA</label>
+                    <input type="number">
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+</body>
+
+</html>
