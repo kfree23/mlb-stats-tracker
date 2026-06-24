@@ -34,6 +34,7 @@ function createPlayer({ name, team, position }) {
     teamInput.value = '';
     positionInput.value = '';
 
+    savePlayers();
     renderPlayer();
 }
 
@@ -88,4 +89,8 @@ function renderPlayer() {
         playerCards.appendChild(card);
     });
 };
+
+function savePlayers() {
+    localStorage.set('players', JSON.stringify(players));
+}
 
