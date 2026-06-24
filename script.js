@@ -80,9 +80,15 @@ function renderPlayers() {
         statPositioning.appendChild(statName);
         statCount.appendChild(statPositioning);
 
+        const logGameBtn = document.createElement('button');
+        logGameBtn.classList.add('log-game-btn');
+        logGameBtn.textContent = 'Log Game';
+
+
         card.appendChild(infoContainer);
         card.appendChild(hr);
         card.appendChild(statCount);
+        card.appendChild(logGameBtn);
 
 
         playerCards.appendChild(card);
