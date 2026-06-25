@@ -84,6 +84,10 @@ function renderPlayers() {
         logGameBtn.classList.add('log-game-btn');
         logGameBtn.textContent = 'Log Game';
 
+        logGameBtn.addEventListener('click', () => {
+            currentPlayerId = player.id;
+            modal.showModal();
+        });
 
         card.appendChild(infoContainer);
         card.appendChild(hr);

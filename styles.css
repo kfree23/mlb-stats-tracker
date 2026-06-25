@@ -159,6 +159,22 @@ body {
     gap: 1rem;
 }
 
+/* Modal */
+dialog {
+    margin: auto;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.log-game-container {
+    border: none;
+    border-radius: 5px;
+}
+
+
+
 /* Utilities */
 .p-1 {
     padding: 1rem;
