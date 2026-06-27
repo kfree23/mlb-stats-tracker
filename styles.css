@@ -173,6 +173,44 @@ dialog::backdrop {
     border-radius: 5px;
 }
 
+.log-game-container .game-log-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.log-game-container .stats-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+
+.log-game-container input {
+    padding: 5px 15px;
+    outline: 2px solid #D7263D;
+    border: none;
+    border-radius: 5px;
+}
+
+.log-game-container input:focus {
+    outline-offset: 2px;
+}
+
+.log-game-container label {
+    margin-bottom: 5px;
+    font-family: var(--font-heading);
+}
+
+.log-game-container .log-game-header {
+    font-family: var(--font-heading);
+}
+
+.log-game-container button {
+    margin: 1rem;
+}
+
 
 
 /* Utilities */
