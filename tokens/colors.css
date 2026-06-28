@@ -1,0 +1,68 @@
+/* ============================================================
+   COLORS — Slugger Design System
+   ============================================================ */
+
+:root {
+  /* ---- Brand & Accent ---- */
+  --ink: #111111;
+  --canvas: #ffffff;
+
+  /* ---- Surfaces ---- */
+  --soft-cloud: #f5f5f5;
+  --hairline: #cacacb;
+  --hairline-soft: #e5e5e5;
+
+  /* ---- Text ---- */
+  --text-ink: #111111;
+  --text-charcoal: #39393b;
+  --text-ash: #4b4b4d;
+  --text-mute: #707072;
+  --text-stone: #9e9ea0;
+
+  /* ---- Semantic ---- */
+  --sale: #d30005;
+  --sale-deep: #780700;
+  --success: #007d48;
+  --success-bright: #1eaa52;
+  --info: #1151ff;
+  --info-deep: #0034e3;
+
+  /* ---- Category Accents ---- */
+  --accent-pink: #ed1aa0;
+  --accent-pink-soft: #ffb0dd;
+  --accent-purple-soft: #beaffd;
+  --accent-purple-pale: #d6d1ff;
+  --accent-teal: #0a7281;
+  --accent-pink-deep: #4c012d;
+
+  /* ---- MLB Brand ---- */
+  --mlb-navy: #041e42;
+  --mlb-navy-deep: #02132b;
+  --mlb-red: #c8102e;
+  --mlb-red-deep: #a30d26;
+
+  /* ---- Semantic Aliases ---- */
+  --bg-page: var(--canvas);
+  --bg-surface: var(--soft-cloud);
+  --bg-inverse: var(--ink);
+
+  --brand-accent: var(--mlb-navy);
+  --brand-accent-deep: var(--mlb-navy-deep);
+  --brand-accent-pop: var(--mlb-red);
+  --halo-accent: 0 0 0 12px rgba(4, 30, 66, 0.10);
+
+  --text-primary: var(--text-ink);
+  --text-secondary: var(--text-mute);
+  --text-on-ink: var(--canvas);
+  --text-on-ink-secondary: var(--text-stone);
+
+  --border-hairline: var(--hairline);
+  --border-inset: var(--hairline-soft);
+
+  --cta-primary-bg: var(--ink);
+  --cta-primary-fg: var(--canvas);
+  --cta-secondary-bg: var(--soft-cloud);
+  --cta-secondary-fg: var(--ink);
+
+  --price-sale: var(--sale);
+}

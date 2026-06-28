@@ -1,0 +1,31 @@
+/* ============================================================
+   TYPOGRAPHY — Slugger Design System
+   ============================================================ */
+
+:root {
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --type-display: 96px;
+  --type-display-lh: 0.9;
+
+  --type-heading-xl: 32px;
+  --type-heading-lg: 24px;
+  --type-heading-md: 16px;
+  --type-body: 16px;
+  --type-button-md: 16px;
+  --type-button-sm: 14px;
+  --type-caption-md: 14px;
+  --type-caption-sm: 12px;
+  --type-legal: 9px;
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.5;
+  --lh-loose: 1.75;
+
+  --tracking-display: -0.01em;
+  --tracking-normal: 0;
+  --tracking-caption: 0.01em;
+}

@@ -1,0 +1,40 @@
+/* ============================================================
+   SPACING, RADII, BORDERS, SHADOWS, MOTION
+   Slugger Design System
+   ============================================================ */
+
+:root {
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+  --space-12: 96px;
+
+  --control-h-pill: 48px;
+  --control-h-pill-sm: 40px;
+  --control-icon: 40px;
+
+  --radius-none: 0;
+  --radius-md: 24px;
+  --radius-full: 9999px;
+
+  --border-width-hairline: 1px;
+  --border-width-focus: 2px;
+  --border-default: 1px solid var(--hairline);
+  --border-focus: 2px solid var(--ink);
+
+  --shadow-inset-strip: inset 0 -1px 0 0 var(--hairline-soft);
+  --halo-focus: 0 0 0 12px rgba(17, 17, 17, 0.06);
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+
+  --container-max: 1200px;
+  --gutter: 24px;
+}
