@@ -259,7 +259,11 @@ body {
 /* Giant stat numeral — the hero */
 #player-cards .card .stat-count {
   align-self: stretch;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   width: auto;
   height: auto;
   margin: 24px 0;

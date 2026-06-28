@@ -67,18 +67,6 @@ function renderPlayers() {
         const statCount = document.createElement('div');
         statCount.classList.add('stat-count', 'flex');
 
-        const statPositioning = document.createElement('div');
-        statPositioning.classList.add('stat-positioning');
-
-        const statNum = document.createElement('p');
-        statNum.textContent = 0;
-
-        const statName = document.createElement('p');
-        statName.textContent = "HR";
-
-        statPositioning.appendChild(statNum);
-        statPositioning.appendChild(statName);
-        statCount.appendChild(statPositioning);
 
         const logGameBtn = document.createElement('button');
         logGameBtn.classList.add('log-game-btn');
@@ -89,6 +77,13 @@ function renderPlayers() {
             modal.showModal();
         });
 
+
+        statCount.appendChild(createStat(0, 'HR'));
+        statCount.appendChild(createStat(0, 'RBI'));
+        statCount.appendChild(createStat(0, 'BB'));
+        statCount.appendChild(createStat(0, 'TB'));
+
+
         card.appendChild(infoContainer);
         card.appendChild(hr);
         card.appendChild(statCount);
@@ -98,6 +93,24 @@ function renderPlayers() {
         playerCards.appendChild(card);
     });
 };
+
+function createStat(statAmount, statLabel) {
+
+    const statPositioning = document.createElement('div');
+    statPositioning.classList.add('stat-positioning');
+
+    const statNum = document.createElement('p');
+    statNum.textContent = statAmount;
+        
+
+    const statName = document.createElement('p');
+    statName.textContent = statLabel;   
+
+    statPositioning.appendChild(statNum);
+    statPositioning.appendChild(statName);
+
+    return statPositioning;
+}
 
 function savePlayers() {
     localStorage.setItem('players', JSON.stringify(players));
