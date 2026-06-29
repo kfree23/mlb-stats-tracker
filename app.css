@@ -404,6 +404,10 @@ body {
 .modal-close:focus-visible { outline: 2px solid var(--canvas); outline-offset: 2px; }
 .modal-close svg { width: 18px; height: 18px; }
 
+.show {
+  display: block;
+}
+
 /* Season-to-date strip */
 .modal-season {
   display: flex;

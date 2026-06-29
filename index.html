@@ -65,7 +65,11 @@
                     </div>
                     <form method="dialog">
                         <button class="modal-close" aria-label="Close">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18" />
+                                <path d="m6 6 12 12" />
+                            </svg>
                         </button>
                     </form>
                 </div>
@@ -100,6 +104,35 @@
                     </div>
 
                     <button class="log-game-btn" id="submit-modal" type="button">Submit</button>
+                </form>
+
+                <form method="dialog" class="game-log-stats pitcher" id="pitcher-stats">
+                    <div class="modal-formhead"><span>This Game</span></div>
+                    <div class="stats-container">
+                        <label for="IP">IP</label>
+                        <input type="number" min="0" id="ip-modal-input" placeholder="0">
+                    </div>
+                    <div class="stats-container">
+                        <label for="K">K</label>
+                        <input type="number" min="0" id="k-modal-input" placeholder="0">
+                    </div>
+                    <div class="stats-container">
+                        <label for="H">H</label>
+                        <input type="number" min="0" id="pitcher-hits-modal-input" placeholder="0">
+                    </div>
+                    <div class="stats-container">
+                        <label for="BB">BB</label>
+                        <input type="number" min="0" id="pitcher-bb-modal-input" placeholder="0">
+                    </div>
+                    <div class="stats-container">
+                        <label for="ER">ER</label>
+                        <input type="number" min="0" id="er-modal-input" placeholder="0">
+                    </div>
+                    <div class="stats-container">
+                        <label for="K9">K9</label>
+                        <input type="number" min="0" id="k9-modal-input" placeholder="0">
+                    </div>
+                    <button class="log-game-btn" id="submit-modal-pitcher" type="button">Submit</button>
                 </form>
             </div>
         </dialog>

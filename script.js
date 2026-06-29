@@ -15,6 +15,8 @@ const runsInput = document.querySelector('#runs-modal-input');
 const walksInput = document.querySelector('#bb-modal-input');
 const submitStatsBtn = document.querySelector('#submit-modal');
 const modalPlayerName = document.querySelector('#modal-player-name');
+const hitterStats = document.querySelector('#hitter-stats');
+const pitcherStats = document.querySelector('#pitcher-stats');
 
 
 let players = [];
@@ -97,6 +99,13 @@ function renderPlayers() {
             currentPlayerId = player.id;
             const currentPlayer = players.find(p => p.id === currentPlayerId);
             console.log('right after assignment:', currentPlayerId, player.id);
+
+            if (currentPlayer === hitterStats) {
+                hitterStats.classList.add('.show');
+            } else {
+                hitterStats.classList.remove('.show');
+            }
+
             modalPlayerName.textContent = currentPlayer.name;
             modal.showModal();
         });
