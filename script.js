@@ -11,6 +11,7 @@ const leaderboard = document.querySelector('#leaderboard-container');
 let players = [];
 let nextId = 1;
 
+
 console.log(playerCards)
 
 submitPlayerBtn.addEventListener('click', () => createPlayer({
@@ -22,13 +23,20 @@ submitPlayerBtn.addEventListener('click', () => createPlayer({
 
 function createPlayer({ name, team, position }) {
 
+    const isPitcher = checkIsPitcher(position);
+
+
     const player = {
         id: nextId++,
         name,
         team,
-        position
+        position,
+        stats: isPitcher ?
+            { IP: 0, K: 0, H: 0, ER: 0, BB: 0, K9: 0 } :
+            { AB: 0, H: 0, HR: 0, RBI: 0, R: 0, BB: 0 }
     };
 
+    
     players.push(player);
     playerInput.value = '';
     teamInput.value = '';
@@ -77,11 +85,24 @@ function renderPlayers() {
             modal.showModal();
         });
 
+        const isPitcher = checkIsPitcher(player.position);
 
-        statCount.appendChild(createStat(0, 'HR'));
-        statCount.appendChild(createStat(0, 'RBI'));
-        statCount.appendChild(createStat(0, 'BB'));
-        statCount.appendChild(createStat(0, 'TB'));
+        if (isPitcher) {
+            statCount.appendChild(createStat(player.stats.IP, 'IP'));
+            statCount.appendChild(createStat(player.stats.K, 'K'));
+            statCount.appendChild(createStat(player.stats.H, 'H'));
+            statCount.appendChild(createStat(player.stats.ER, 'ER'));
+            statCount.appendChild(createStat(player.stats.BB, 'BB'));
+            statCount.appendChild(createStat(player.stats.K9, 'K9'));
+        } else {
+            statCount.appendChild(createStat(player.stats.AB, 'AB'));
+            statCount.appendChild(createStat(player.stats.H, 'H'));
+            statCount.appendChild(createStat(player.stats.HR, 'HR'));
+            statCount.appendChild(createStat(player.stats.RBI, 'RBI'));
+            statCount.appendChild(createStat(player.stats.R, 'R'));
+            statCount.appendChild(createStat(player.stats.BB, 'BB'));
+        }
+
 
 
         card.appendChild(infoContainer);
@@ -101,15 +122,19 @@ function createStat(statAmount, statLabel) {
 
     const statNum = document.createElement('p');
     statNum.textContent = statAmount;
-        
+
 
     const statName = document.createElement('p');
-    statName.textContent = statLabel;   
+    statName.textContent = statLabel;
 
     statPositioning.appendChild(statNum);
     statPositioning.appendChild(statName);
 
     return statPositioning;
+}
+
+function checkIsPitcher(position) {
+    return ['P', 'SP', 'RP', 'Pitcher', 'CP'].includes(player.position.toUpperCase());
 }
 
 function savePlayers() {
