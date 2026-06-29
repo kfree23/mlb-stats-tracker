@@ -13,6 +13,8 @@ const hrInput = document.querySelector('#hr-modal-input');
 const rbiInput = document.querySelector('#rbi-modal-input');
 const runsInput = document.querySelector('#runs-modal-input');
 const walksInput = document.querySelector('#bb-modal-input');
+const submitStatsBtn = document.querySelector('#submit-modal');
+const modalPlayerName = document.querySelector('#modal-player-name');
 
 
 let players = [];
@@ -29,6 +31,8 @@ submitPlayerBtn.addEventListener('click', () => createPlayer({
 }
 ));
 
+submitStatsBtn.addEventListener('click', logModal);
+
 function createPlayer({ name, team, position }) {
 
     const isPitcher = checkIsPitcher(position);
@@ -44,7 +48,7 @@ function createPlayer({ name, team, position }) {
             { AB: 0, H: 0, HR: 0, RBI: 0, R: 0, BB: 0 }
     };
 
-    
+
     players.push(player);
     playerInput.value = '';
     teamInput.value = '';
@@ -89,6 +93,11 @@ function renderPlayers() {
         logGameBtn.textContent = 'Log Game';
 
         logGameBtn.addEventListener('click', () => {
+            
+            currentPlayerId = player.id;
+            const currentPlayer = players.find(p => p.id === currentPlayerId);
+            console.log('right after assignment:', currentPlayerId, player.id);
+            modalPlayerName.textContent = currentPlayer.name;
             modal.showModal();
         });
 
@@ -145,7 +154,35 @@ function checkIsPitcher(position) {
 }
 
 function logModal() {
+    console.log('logModal fired, currentPlayerId:', currentPlayerId);
+    const ab = abInput.value;
+    const hits = hitsInput.value;
+    const hr = hrInput.value;
+    const rbi = rbiInput.value;
+    const runs = runsInput.value;
+    const walks = walksInput.value;
 
+    const player = players.find(p => p.id === currentPlayerId);
+
+    players = players.map(p => {
+        if (p.id === currentPlayerId) {
+            return {
+                ...p, stats: {
+                    ...p.stats, HR: p.stats.HR + Number(hr), AB: p.stats.AB + Number(ab),
+                    H: p.stats.H + Number(hits),
+                    RBI: p.stats.RBI + Number(rbi),
+                    R: p.stats.R + Number(runs),
+                    BB: p.stats.BB + Number(walks)
+                }
+            }
+        }
+        return p;
+    });
+
+    checkIsPitcher(player.position);
+    savePlayers();
+    renderPlayers();
+    modal.close();
 }
 
 function savePlayers() {
@@ -157,6 +194,7 @@ function loadPlayers() {
 
     if (storedPlayers) {
         players = JSON.parse(storedPlayers);
+        nextId = Math.max(...players.map(p => p.id) + 1);
     }
 
     renderPlayers();
