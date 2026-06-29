@@ -7,9 +7,17 @@ const modal = document.querySelector('#log-game-modal');
 const playersTracked = document.querySelector('#players-tracked');
 const playerCards = document.querySelector('#player-cards');
 const leaderboard = document.querySelector('#leaderboard-container');
+const abInput = document.querySelector('#ab-modal-input');
+const hitsInput = document.querySelector('#hits-modal-input');
+const hrInput = document.querySelector('#hr-modal-input');
+const rbiInput = document.querySelector('#rbi-modal-input');
+const runsInput = document.querySelector('#runs-modal-input');
+const walksInput = document.querySelector('#bb-modal-input');
+
 
 let players = [];
 let nextId = 1;
+let currentPlayerId = null;
 
 
 console.log(playerCards)
@@ -81,7 +89,6 @@ function renderPlayers() {
         logGameBtn.textContent = 'Log Game';
 
         logGameBtn.addEventListener('click', () => {
-            currentPlayerId = player.id;
             modal.showModal();
         });
 
@@ -134,7 +141,11 @@ function createStat(statAmount, statLabel) {
 }
 
 function checkIsPitcher(position) {
-    return ['P', 'SP', 'RP', 'Pitcher', 'CP'].includes(player.position.toUpperCase());
+    return ['P', 'SP', 'RP', 'Pitcher', 'CP'].includes(position.toUpperCase());
+}
+
+function logModal() {
+
 }
 
 function savePlayers() {
