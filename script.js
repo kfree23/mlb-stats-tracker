@@ -14,9 +14,16 @@ const rbiInput = document.querySelector('#rbi-modal-input');
 const runsInput = document.querySelector('#runs-modal-input');
 const walksInput = document.querySelector('#bb-modal-input');
 const submitStatsBtn = document.querySelector('#submit-modal');
+const submitPitcherStatsBtn = document.querySelector('#submit-modal-pitcher');
 const modalPlayerName = document.querySelector('#modal-player-name');
 const hitterStats = document.querySelector('#hitter-stats');
 const pitcherStats = document.querySelector('#pitcher-stats');
+const ipInput = document.querySelector('#ip-modal-input');
+const strikeOutInput = document.querySelector('#k-modal-input');
+const pitcherHitsInput = document.querySelector('#pitcher-hits-modal-input');
+const pitcherWalksInput = document.querySelector('#pitcher-bb-modal-input');
+const errorInput = document.querySelector('#er-modal-input');
+const eraInput = document.querySelector('#era-modal-input');
 
 
 let players = [];
@@ -34,6 +41,7 @@ submitPlayerBtn.addEventListener('click', () => createPlayer({
 ));
 
 submitStatsBtn.addEventListener('click', logModal);
+submitPitcherStatsBtn.addEventListener('click', logModal);
 
 function createPlayer({ name, team, position }) {
 
@@ -46,7 +54,7 @@ function createPlayer({ name, team, position }) {
         team,
         position,
         stats: isPitcher ?
-            { IP: 0, K: 0, H: 0, ER: 0, BB: 0, ERA: 0 } :
+            { IP: 0, K: 0, H: 0, E: 0, BB: 0, ERA: [] } :
             { AB: 0, H: 0, HR: 0, RBI: 0, R: 0, BB: 0 }
     };
 
@@ -112,14 +120,20 @@ function renderPlayers() {
         });
 
         const isPitcher = checkIsPitcher(player.position);
+        
+        
 
         if (isPitcher) {
+            const avgEra = player.stats.ERA.length > 0
+            ? (player.stats.ERA.reduce((sum, val) => sum + val, 0) / player.stats.ERA.length).toFixed(2)
+            : 0;
+
             statCount.appendChild(createStat(player.stats.IP, 'IP'));
             statCount.appendChild(createStat(player.stats.K, 'K'));
             statCount.appendChild(createStat(player.stats.H, 'H'));
-            statCount.appendChild(createStat(player.stats.ER, 'ER'));
+            statCount.appendChild(createStat(player.stats.E, 'E'));
             statCount.appendChild(createStat(player.stats.BB, 'BB'));
-            statCount.appendChild(createStat(player.stats.ERA, 'ERA'));
+            statCount.appendChild(createStat(avgEra, 'ERA'));
         } else {
             statCount.appendChild(createStat(player.stats.AB, 'AB'));
             statCount.appendChild(createStat(player.stats.H, 'H'));
@@ -128,8 +142,6 @@ function renderPlayers() {
             statCount.appendChild(createStat(player.stats.R, 'R'));
             statCount.appendChild(createStat(player.stats.BB, 'BB'));
         }
-
-
 
         card.appendChild(infoContainer);
         card.appendChild(hr);
@@ -167,7 +179,29 @@ function logModal() {
     const player = players.find(p => p.id === currentPlayerId);
 
     if (checkIsPitcher(player.position)) {
-        const
+        const ip = ipInput.value;
+        const strikeouts = strikeOutInput.value;
+        const pitcherHits = pitcherHitsInput.value;
+        const pitcherWalks = pitcherWalksInput.value;
+        const error = errorInput.value;
+        const era = eraInput.value;
+
+
+        players = players.map(p => {
+            if (p.id === currentPlayerId) {
+                return {
+                    ...p, stats: {
+                        ...p.stats, IP: p.stats.IP + Number(ip),
+                        K: p.stats.K + Number(strikeouts),
+                        H: p.stats.H + Number(pitcherHits),
+                        E: p.stats.E + Number(error),
+                        BB: p.stats.BB + Number(pitcherWalks),
+                        ERA: [...p.stats.ERA, Number(era)]
+                    }
+                }
+            }
+            return p;
+        })
     } else {
         const ab = abInput.value;
         const hits = hitsInput.value;
