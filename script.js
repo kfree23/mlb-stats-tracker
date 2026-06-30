@@ -73,6 +73,9 @@ function renderPlayers() {
     playerCards.innerHTML = '';
 
     players.forEach(player => {
+
+        playersTracked.textContent = `${players.length} player${players.length >= 2 ? 's' : ''} tracked` ;
+
         const card = document.createElement('div');
         card.classList.add('card-styles', 'p-3', 'player-grid');
         card.classList.add('card');
