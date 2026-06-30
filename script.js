@@ -61,6 +61,7 @@ function createPlayer({ name, team, position }) {
 }
 
 function renderPlayers() {
+    console.log('renderPlayers called');
     playerCards.innerHTML = '';
 
     players.forEach(player => {
@@ -95,15 +96,15 @@ function renderPlayers() {
         logGameBtn.textContent = 'Log Game';
 
         logGameBtn.addEventListener('click', () => {
-            
             currentPlayerId = player.id;
             const currentPlayer = players.find(p => p.id === currentPlayerId);
-            console.log('right after assignment:', currentPlayerId, player.id);
 
-            if (currentPlayer === hitterStats) {
-                hitterStats.classList.add('.show');
+            if (checkIsPitcher(player.position)) {
+                pitcherStats.classList.add('show');
+                hitterStats.classList.remove('show');
             } else {
-                hitterStats.classList.remove('.show');
+                hitterStats.classList.add('show');
+                pitcherStats.classList.remove('show');
             }
 
             modalPlayerName.textContent = currentPlayer.name;
