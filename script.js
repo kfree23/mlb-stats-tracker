@@ -24,7 +24,7 @@ let nextId = 1;
 let currentPlayerId = null;
 
 
-console.log(playerCards)
+
 
 submitPlayerBtn.addEventListener('click', () => createPlayer({
     name: playerInput.value,
@@ -46,7 +46,7 @@ function createPlayer({ name, team, position }) {
         team,
         position,
         stats: isPitcher ?
-            { IP: 0, K: 0, H: 0, ER: 0, BB: 0, K9: 0 } :
+            { IP: 0, K: 0, H: 0, ER: 0, BB: 0, ERA: 0 } :
             { AB: 0, H: 0, HR: 0, RBI: 0, R: 0, BB: 0 }
     };
 
@@ -119,7 +119,7 @@ function renderPlayers() {
             statCount.appendChild(createStat(player.stats.H, 'H'));
             statCount.appendChild(createStat(player.stats.ER, 'ER'));
             statCount.appendChild(createStat(player.stats.BB, 'BB'));
-            statCount.appendChild(createStat(player.stats.K9, 'K9'));
+            statCount.appendChild(createStat(player.stats.ERA, 'ERA'));
         } else {
             statCount.appendChild(createStat(player.stats.AB, 'AB'));
             statCount.appendChild(createStat(player.stats.H, 'H'));
@@ -164,30 +164,34 @@ function checkIsPitcher(position) {
 }
 
 function logModal() {
-    console.log('logModal fired, currentPlayerId:', currentPlayerId);
-    const ab = abInput.value;
-    const hits = hitsInput.value;
-    const hr = hrInput.value;
-    const rbi = rbiInput.value;
-    const runs = runsInput.value;
-    const walks = walksInput.value;
-
     const player = players.find(p => p.id === currentPlayerId);
 
-    players = players.map(p => {
-        if (p.id === currentPlayerId) {
-            return {
-                ...p, stats: {
-                    ...p.stats, HR: p.stats.HR + Number(hr), AB: p.stats.AB + Number(ab),
-                    H: p.stats.H + Number(hits),
-                    RBI: p.stats.RBI + Number(rbi),
-                    R: p.stats.R + Number(runs),
-                    BB: p.stats.BB + Number(walks)
+    if (checkIsPitcher(player.position)) {
+        const
+    } else {
+        const ab = abInput.value;
+        const hits = hitsInput.value;
+        const hr = hrInput.value;
+        const rbi = rbiInput.value;
+        const runs = runsInput.value;
+        const walks = walksInput.value;
+
+        players = players.map(p => {
+            if (p.id === currentPlayerId) {
+                return {
+                    ...p, stats: {
+                        ...p.stats, HR: p.stats.HR + Number(hr), AB: p.stats.AB + Number(ab),
+                        H: p.stats.H + Number(hits),
+                        RBI: p.stats.RBI + Number(rbi),
+                        R: p.stats.R + Number(runs),
+                        BB: p.stats.BB + Number(walks)
+                    }
                 }
             }
-        }
-        return p;
-    });
+            return p;
+        });
+    }
+
 
     checkIsPitcher(player.position);
     savePlayers();
