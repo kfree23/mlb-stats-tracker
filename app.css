@@ -162,6 +162,7 @@ body {
 .tabs li.active {
   border-bottom: 3px solid var(--mlb-red);
   margin-bottom: -1px;
+  display: block;
 }
 .tabs li:not(.active):hover button { color: var(--text-ink); }
 
@@ -543,7 +544,11 @@ body {
 .game-log-stats .log-game-btn:hover { background: var(--mlb-red-deep); }
 
 /* ---- Leaderboard ----------------------------------------------- */
-.leaderboard-view { padding: 48px; }
+.leaderboard-view {
+  display: none;
+  padding: 48px;
+}
+
 .lb-toolbar {
   display: flex;
   align-items: flex-end;

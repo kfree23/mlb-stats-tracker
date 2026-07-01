@@ -6,7 +6,7 @@ const tabs = document.querySelectorAll('.tabs li');
 const modal = document.querySelector('#log-game-modal');
 const playersTracked = document.querySelector('#players-tracked');
 const playerCards = document.querySelector('#player-cards');
-const leaderboard = document.querySelector('#leaderboard-container');
+const leaderboard = document.querySelector('#leaderboard-view');
 const abInput = document.querySelector('#ab-modal-input');
 const hitsInput = document.querySelector('#hits-modal-input');
 const hrInput = document.querySelector('#hr-modal-input');
@@ -39,6 +39,23 @@ submitPlayerBtn.addEventListener('click', () => createPlayer({
     position: positionInput.value
 }
 ));
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const tabName = tab.getAttribute('data-tab');
+
+        if (tabName === 'player-cards') {
+            playerCards.style.display = 'grid';
+            leaderboard.style.display = 'none'
+        } else if (tabName === 'leaderboard') {
+            leaderboard.style.display = 'block';
+            playerCards.style.display = 'none';
+        }
+    })
+})
 
 submitStatsBtn.addEventListener('click', logModal);
 submitPitcherStatsBtn.addEventListener('click', logModal);
