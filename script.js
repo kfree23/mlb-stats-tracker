@@ -266,15 +266,16 @@ function logModal() {
 
 function renderLeaderboard(sortBy = 'HR') {
     const leaderboardContainer = document.querySelector
-    ('#leaderboard-container');
+        ('#leaderboard-container');
 
-    console.log('sortBy:', sortBy, 'players:', players.map(p => p.stats[sortBy]));
+    const hitters = players.filter(player => !checkIsPitcher(player.position));
+    const pitchers = players.filter(player => checkIsPitcher(player.position));
 
     const sorted = players.sort((b, a) => b.stats[sortBy] - a.stats[sortBy]);
 
     leaderboardContainer.innerHTML = '';
 
-    sorted.forEach((player, index) => {
+    sorted.forEach((hitter, index) => {
 
 
         const lbRow = document.createElement('div');
@@ -314,6 +315,10 @@ function renderLeaderboard(sortBy = 'HR') {
         leaderboardContainer.appendChild(lbRow);
 
     });
+
+    sorted.forEach((pitcher, index) => {
+        
+    })
 
 }
 

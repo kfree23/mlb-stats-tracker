@@ -566,6 +566,32 @@ body {
   text-transform: uppercase;
   color: var(--text-ink);
 }
+
+.lb-type-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.lb-type {
+    height: 38px;
+    padding: 0 18px;
+    border: 1px solid var(--hairline);
+    background: var(--canvas);
+    font-family: var(--font-text);
+    font-size: var(--type-caption-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    cursor: pointer;
+}
+
+.lb-type.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--canvas);
+}
+
 .lb-sort { display: flex; gap: 8px; }
 .lb-chip {
   height: 38px;
