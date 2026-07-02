@@ -53,6 +53,7 @@ tabs.forEach(tab => {
         } else if (tabName === 'leaderboard') {
             leaderboard.style.display = 'block';
             playerCards.style.display = 'none';
+            renderLeaderboard();
         }
     })
 });
@@ -86,12 +87,11 @@ function createPlayer({ name, team, position }) {
 }
 
 function renderPlayers() {
-    console.log('renderPlayers called');
     playerCards.innerHTML = '';
 
     players.forEach(player => {
 
-        playersTracked.textContent = `${players.length} player${players.length >= 2 ? 's' : ''} tracked` ;
+        playersTracked.textContent = `${players.length} player${players.length >= 2 ? 's' : ''} tracked`;
 
         const card = document.createElement('div');
         card.classList.add('card-styles', 'p-3', 'player-grid');
@@ -140,13 +140,13 @@ function renderPlayers() {
         });
 
         const isPitcher = checkIsPitcher(player.position);
-        
-        
+
+
 
         if (isPitcher) {
             const avgEra = player.stats.ERA.length > 0
-            ? (player.stats.ERA.reduce((sum, val) => sum + val, 0) / player.stats.ERA.length).toFixed(2)
-            : 0;
+                ? (player.stats.ERA.reduce((sum, val) => sum + val, 0) / player.stats.ERA.length).toFixed(2)
+                : 0;
 
             statCount.appendChild(createStat(player.stats.IP, 'IP'));
             statCount.appendChild(createStat(player.stats.K, 'K'));
@@ -249,8 +249,44 @@ function logModal() {
 
     checkIsPitcher(player.position);
     savePlayers();
+    renderLeaderboard();
     renderPlayers();
     modal.close();
+}
+
+function renderLeaderboard() {
+    const leaderboardContainer = document.querySelector('#leaderboard-container');
+
+    const sortHr = players.sort((b, a) => b.stats.HR - a.stats.HR);
+
+    leaderboardContainer.innerHTML = '';
+
+
+    sortHr.forEach((hr, index) => {
+
+
+        const lbRow = document.createElement('div');
+        lbRow.classList.add('lb-row');
+
+        const lbRank = document.createElement('span');
+        lbRank.classList.add('lb-rank');
+        lbRank.textContent = index + 1;
+
+        const lbPlayer = document.createElement('span');
+        lbPlayer.classList.add('lb-player');
+        lbPlayer.textContent = hr.name;
+
+        const lbStat = document.createElement('span');
+        lbStat.classList.add('lb-stat');
+        lbStat.textContent = hr.stats.HR;
+
+        lbRow.appendChild(lbRank);
+        lbRow.appendChild(lbPlayer);
+        lbRow.appendChild(lbStat);
+        leaderboardContainer.appendChild(lbRow);
+
+    });
+
 }
 
 function savePlayers() {
