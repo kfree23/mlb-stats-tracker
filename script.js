@@ -55,7 +55,7 @@ tabs.forEach(tab => {
             playerCards.style.display = 'none';
         }
     })
-})
+});
 
 submitStatsBtn.addEventListener('click', logModal);
 submitPitcherStatsBtn.addEventListener('click', logModal);
