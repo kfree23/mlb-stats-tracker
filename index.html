@@ -49,7 +49,12 @@
         <div class="leaderboard-view" id="leaderboard-view" hidden>
             <div class="lb-toolbar">
                 <h2 class="lb-title">League<br>Leaders</h2>
-                <div class="lb-sort" id="lb-sort"></div>
+                <div class="lb-sort" id="lb-sort">
+                    <button class="lb-chip active" data-sort="HR">HR</button>
+                    <button class="lb-chip" data-sort="H">H</button>
+                    <button class="lb-chip" data-sort="RBI">RBI</button>
+                    <button class="lb-chip" data-sort="R">R</button>
+                </div>
             </div>
 
             <div class="lb-head">
@@ -60,6 +65,7 @@
                 <span class="num">RBI</span>
                 <span class="num">R</span>
             </div>
+
 
             <div id="leaderboard-container"></div>
         </div>

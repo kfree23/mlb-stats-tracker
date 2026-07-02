@@ -24,6 +24,8 @@ const pitcherHitsInput = document.querySelector('#pitcher-hits-modal-input');
 const pitcherWalksInput = document.querySelector('#pitcher-bb-modal-input');
 const errorInput = document.querySelector('#er-modal-input');
 const eraInput = document.querySelector('#era-modal-input');
+const lbSort = document.querySelector('#lb-sort');
+const lbChips = document.querySelectorAll('.lb-chip');
 
 
 let players = [];
@@ -60,6 +62,14 @@ tabs.forEach(tab => {
 
 submitStatsBtn.addEventListener('click', logModal);
 submitPitcherStatsBtn.addEventListener('click', logModal);
+
+lbChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+        lbChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderLeaderboard(chip.getAttribute('data-sort'));
+    });
+});
 
 function createPlayer({ name, team, position }) {
 
@@ -254,15 +264,17 @@ function logModal() {
     modal.close();
 }
 
-function renderLeaderboard() {
-    const leaderboardContainer = document.querySelector('#leaderboard-container');
+function renderLeaderboard(sortBy = 'HR') {
+    const leaderboardContainer = document.querySelector
+    ('#leaderboard-container');
 
-    const sortHr = players.sort((b, a) => b.stats.HR - a.stats.HR);
+    console.log('sortBy:', sortBy, 'players:', players.map(p => p.stats[sortBy]));
+
+    const sorted = players.sort((b, a) => b.stats[sortBy] - a.stats[sortBy]);
 
     leaderboardContainer.innerHTML = '';
 
-
-    sortHr.forEach((hr, index) => {
+    sorted.forEach((player, index) => {
 
 
         const lbRow = document.createElement('div');
@@ -274,15 +286,31 @@ function renderLeaderboard() {
 
         const lbPlayer = document.createElement('span');
         lbPlayer.classList.add('lb-player');
-        lbPlayer.textContent = hr.name;
+        lbPlayer.textContent = player.name;
 
-        const lbStat = document.createElement('span');
-        lbStat.classList.add('lb-stat');
-        lbStat.textContent = hr.stats.HR;
+        const lbHr = document.createElement('span');
+        lbHr.classList.add('lb-stat');
+        lbHr.textContent = player.stats.HR;
+
+        const lbHits = document.createElement('span');
+        lbHits.classList.add('lb-stat');
+        lbHits.textContent = player.stats.H;
+
+
+        const lbRbi = document.createElement('span');
+        lbRbi.classList.add('lb-stat');
+        lbRbi.textContent = player.stats.RBI;
+
+        const lbRuns = document.createElement('span');
+        lbRuns.classList.add('lb-stat');
+        lbRuns.textContent = player.stats.R;
 
         lbRow.appendChild(lbRank);
         lbRow.appendChild(lbPlayer);
-        lbRow.appendChild(lbStat);
+        lbRow.appendChild(lbHr);
+        lbRow.appendChild(lbHits);
+        lbRow.appendChild(lbRbi);
+        lbRow.appendChild(lbRuns);
         leaderboardContainer.appendChild(lbRow);
 
     });
