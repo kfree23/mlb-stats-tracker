@@ -181,6 +181,13 @@ function renderPlayers() {
             modal.showModal();
         });
 
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.setAttribute('aria-label', 'Remove player');
+        deleteBtn.textContent = '×';
+
+        deleteBtn.addEventListener('click', () => deletePlayer(player.id));
+
         const isPitcher = checkIsPitcher(player.position);
 
 
@@ -209,6 +216,7 @@ function renderPlayers() {
         card.appendChild(hr);
         card.appendChild(statCount);
         card.appendChild(logGameBtn);
+        card.appendChild(deleteBtn);
 
 
         playerCards.appendChild(card);

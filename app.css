@@ -227,25 +227,17 @@ body {
 #player-cards .card hr { display: none; }
 
 /* X dismiss button (pseudo-element — functionality wired in JS) */
-#player-cards .card::after {
-  content: "×";
+.delete-btn {
   position: absolute;
   top: 10px;
   right: 10px;
   width: 26px;
   height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-text);
-  font-size: 18px;
-  line-height: 1;
-  color: var(--text-stone);
+  background: none;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: color var(--dur-fast) var(--ease-standard),
-              border-color var(--dur-fast) var(--ease-standard),
-              background var(--dur-fast) var(--ease-standard);
+  font-size: 18px;
+  color: var(--text-stone);
 }
 #player-cards .card:hover::after {
   color: var(--text-mute);
