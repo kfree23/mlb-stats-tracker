@@ -78,12 +78,14 @@ lbToggleBtns.forEach(btn => {
 
 
         if (btnName === 'hitters') {
+            currentPlayerType = btnName;
             lbChipsHitter.style.display = 'flex';
             lbChipsPitcher.style.display = 'none';
             lbHeadHitter.style.display = 'grid';
             lbHeadPitcher.style.display = 'none';
             renderLeaderboard('HR', 'hitters');
         } else {
+            currentPlayerType = btnName;
             lbChipsPitcher.style.display = 'flex';
             lbChipsHitter.style.display = 'none';
             lbHeadPitcher.style.display = 'grid';
@@ -237,6 +239,7 @@ function checkIsPitcher(position) {
 
 function logModal() {
     const player = players.find(p => p.id === currentPlayerId);
+    console.log('logging to:', currentPlayerId, player.name);
 
     if (checkIsPitcher(player.position)) {
         const ip = ipInput.value;
@@ -301,40 +304,76 @@ function renderLeaderboard(sortBy = 'HR', playerType = 'hitters') {
     const hitters = players.filter(player => !checkIsPitcher(player.position));
     const pitchers = players.filter(player => checkIsPitcher(player.position));
     const group = playerType === 'hitters' ? hitters : pitchers;
-    const sorted = group.sort((b, a) => b.stats[sortBy] - a.stats[sortBy]);
+    const sorted = [...group].sort((b, a) => (a.stats[sortBy] ?? 0) - (b.stats[sortBy] ?? 0));
+    console.log('sortBy:', sortBy, 'playerType:', playerType, 'group:', group);
 
     leaderboardContainer.innerHTML = '';
 
     sorted.forEach((hitter, index) => {
 
-
         const lbRow = document.createElement('div');
-        lbRow.classList.add('lb-row');
-
         const lbRank = document.createElement('span');
-        lbRank.classList.add('lb-rank');
-        lbRank.textContent = index + 1;
-
         const lbPlayer = document.createElement('span');
-        lbPlayer.classList.add('lb-player');
-        lbPlayer.textContent = hitter.name;
-
         const lbHr = document.createElement('span');
-        lbHr.classList.add('lb-stat');
-        lbHr.textContent = hitter.stats.HR;
-
         const lbHits = document.createElement('span');
-        lbHits.classList.add('lb-stat');
-        lbHits.textContent = hitter.stats.H;
-
-
         const lbRbi = document.createElement('span');
-        lbRbi.classList.add('lb-stat');
-        lbRbi.textContent = hitter.stats.RBI;
-
         const lbRuns = document.createElement('span');
-        lbRuns.classList.add('lb-stat');
-        lbRuns.textContent = hitter.stats.R;
+
+        if (playerType === 'hitters') {
+            lbRow.classList.add('lb-row');
+
+
+            lbRank.classList.add('lb-rank');
+            lbRank.textContent = index + 1;
+
+
+            lbPlayer.classList.add('lb-player');
+            lbPlayer.textContent = hitter.name;
+
+
+            lbHr.classList.add('lb-stat');
+            lbHr.textContent = hitter.stats.HR;
+
+
+            lbHits.classList.add('lb-stat');
+            lbHits.textContent = hitter.stats.H;
+
+
+
+            lbRbi.classList.add('lb-stat');
+            lbRbi.textContent = hitter.stats.RBI;
+
+
+            lbRuns.classList.add('lb-stat');
+            lbRuns.textContent = hitter.stats.R;
+        } else {
+            lbRow.classList.add('lb-row');
+
+
+            lbRank.classList.add('lb-rank');
+            lbRank.textContent = index + 1;
+
+
+            lbPlayer.classList.add('lb-player');
+            lbPlayer.textContent = hitter.name;
+
+
+            lbHr.classList.add('lb-stat');
+            lbHr.textContent = hitter.stats.K;
+
+
+            lbHits.classList.add('lb-stat');
+            lbHits.textContent = hitter.stats.IP;
+
+
+
+            lbRbi.classList.add('lb-stat');
+            lbRbi.textContent = hitter.stats.BB;
+
+
+            lbRuns.classList.add('lb-stat');
+            lbRuns.textContent = hitter.stats.ERA;
+        }
 
         lbRow.appendChild(lbRank);
         lbRow.appendChild(lbPlayer);
@@ -360,6 +399,12 @@ function loadPlayers() {
         nextId = Math.max(...players.map(p => p.id) + 1);
     }
 
+    renderPlayers();
+}
+
+function deletePlayer(id) {
+    players = players.filter(player => player.id !== id);
+    savePlayers();
     renderPlayers();
 }
 
