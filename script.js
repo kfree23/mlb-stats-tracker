@@ -26,6 +26,7 @@ const errorInput = document.querySelector('#er-modal-input');
 const eraInput = document.querySelector('#era-modal-input');
 const lbSort = document.querySelector('#lb-sort');
 const lbChips = document.querySelectorAll('.lb-chip');
+const lbToggleBtns = document.querySelectorAll('.lb-type');
 
 
 let players = [];
@@ -62,6 +63,14 @@ tabs.forEach(tab => {
 
 submitStatsBtn.addEventListener('click', logModal);
 submitPitcherStatsBtn.addEventListener('click', logModal);
+
+lbToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        lbToggleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderLeaderboard(btn.getAttribute('data-type'));
+    });
+});
 
 lbChips.forEach(chip => {
     chip.addEventListener('click', () => {
