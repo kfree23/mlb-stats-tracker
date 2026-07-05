@@ -31,6 +31,7 @@ const lbChipsHitter = document.querySelector('.lb-chips-hitter');
 const lbChipsPitcher = document.querySelector('.lb-chips-pitcher');
 const lbHeadHitter = document.querySelector('.lb-head-hitter');
 const lbHeadPitcher = document.querySelector('.lb-head-pitcher');
+const playerContainer = document.querySelector('.player-card-container');
 
 
 let players = [];
@@ -56,11 +57,11 @@ tabs.forEach(tab => {
         const tabName = tab.getAttribute('data-tab');
 
         if (tabName === 'player-cards') {
-            playerCards.style.display = 'grid';
+            playerContainer.style.display = 'grid';
             leaderboard.style.display = 'none'
         } else if (tabName === 'leaderboard') {
             leaderboard.style.display = 'block';
-            playerCards.style.display = 'none';
+            playerContainer.style.display = 'none';
             renderLeaderboard();
         }
     })
@@ -247,7 +248,7 @@ function checkIsPitcher(position) {
 
 function logModal() {
     const player = players.find(p => p.id === currentPlayerId);
-    console.log('logging to:', currentPlayerId, player.name);
+
 
     if (checkIsPitcher(player.position)) {
         const ip = ipInput.value;
@@ -297,12 +298,25 @@ function logModal() {
         });
     }
 
-
     checkIsPitcher(player.position);
     savePlayers();
     renderLeaderboard();
     renderPlayers();
     modal.close();
+
+    abInput.value = '';
+    hitsInput.value = '';
+    hrInput.value = '';
+    rbiInput.value = '';
+    runsInput.value = '';
+    walksInput.value = '';
+
+    ipInput.value = '';
+    strikeOutInput.value = '';
+    pitcherHitsInput.value = '';
+    pitcherWalksInput.value = '';
+    errorInput.value = '';
+    eraInput.value = '';
 }
 
 function renderLeaderboard(sortBy = 'HR', playerType = 'hitters') {

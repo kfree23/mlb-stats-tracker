@@ -25,6 +25,7 @@ body {
   margin: 0 auto;
   background: var(--canvas);
   min-height: 100vh;
+  width: 100%;
 }
 
 .flex { display: flex; align-items: center; }
@@ -252,7 +253,9 @@ body {
 /* Giant stat numeral — the hero */
 #player-cards .card .stat-count {
   align-self: stretch;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -609,6 +612,12 @@ body {
   color: var(--canvas);
 }
 
+.lb-chips-hitter,
+.lb-chips-pitcher {
+    display: flex;
+    gap: 8px;
+}
+
 .lb-head, .lb-row {
   display: grid;
   grid-template-columns: 56px 1fr 84px 84px 88px 84px;
@@ -689,8 +698,39 @@ body {
   color: var(--hairline);
 }
 
+@media (max-width: 640px) {
+    .input-player {
+        flex-wrap: wrap;
+    }
+    
+    .input-player input {
+        min-width: 0;
+        flex: 1 1 calc(50% - 6px);
+    }
+    
+    .input-player button {
+        width: 100%;
+    }
+}
+
 @media (max-width: 760px) {
   .lb-head, .lb-row { grid-template-columns: 44px 1fr 64px 72px; }
   .lb-head span:nth-child(4), .lb-row > :nth-child(4),
   .lb-head span:nth-child(6), .lb-row > :nth-child(6) { display: none; }
+}
+
+@media (max-width: 900px) {
+    .input-player {
+        flex-wrap: wrap;
+        padding: 20px 24px;
+    }
+    
+    .input-player input {
+        min-width: 0;
+        flex: 1 1 calc(50% - 6px);
+    }
+    
+    .input-player button {
+        width: 100%;
+    }
 }
