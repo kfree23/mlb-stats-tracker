@@ -54,20 +54,39 @@
                     <button class="lb-type" data-type="pitchers">Pitchers</button>
                 </div>
                 <div class="lb-sort" id="lb-sort">
-                    <button class="lb-chip active" data-sort="HR">HR</button>
-                    <button class="lb-chip" data-sort="H">H</button>
-                    <button class="lb-chip" data-sort="RBI">RBI</button>
-                    <button class="lb-chip" data-sort="R">R</button>
+                    <div class="lb-chips-hitter">
+                        <button class="lb-chip active" data-sort="HR">HR</button>
+                        <button class="lb-chip" data-sort="H">H</button>
+                        <button class="lb-chip" data-sort="RBI">RBI</button>
+                        <button class="lb-chip" data-sort="R">R</button>
+                    </div>
+                    <div class="lb-chips-pitcher" style="display:none">
+                        <button class="lb-chip active" data-sort="K">K</button>
+                        <button class="lb-chip" data-sort="IP">IP</button>
+                        <button class="lb-chip" data-sort="BB">BB</button>
+                        <button class="lb-chip" data-sort="ERA">ERA</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="lb-head">
+
+            <div class="lb-head lb-head-hitter">
                 <span>#</span>
                 <span>Player</span>
                 <span class="num">HR</span>
                 <span class="num">H</span>
                 <span class="num">RBI</span>
                 <span class="num">R</span>
+            </div>
+
+
+            <div class="lb-head lb-head-pitcher" style="display:none">
+                <span>#</span>
+                <span>Player</span>
+                <span class="num">K</span>
+                <span class="num">IP</span>
+                <span class="num">BB</span>
+                <span class="num">ERA</span>
             </div>
 
 
